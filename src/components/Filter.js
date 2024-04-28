@@ -1,10 +1,27 @@
+// Import React library
 import React from "react";
 
-function Filter({ onCategoryChange }) {
+// Define Filter component
+function Filter({ search, onSearchChange, onCategoryChange }) {
+  // Function to handle search input change
+  function handleSearchChange(event) {
+    onSearchChange(event.target.value);
+  }
+
+  // Render the Filter component
   return (
     <div className="Filter">
-      <input type="text" name="search" placeholder="Search..." />
+      {/* Input field for search */}
+      <input
+        type="text"
+        name="search"
+        placeholder="Search..."
+        value={search}
+        onChange={handleSearchChange} // Call handleSearchChange on input change
+      />
+      {/* Dropdown menu for category filter */}
       <select name="filter" onChange={onCategoryChange}>
+        {/* Options for different categories */}
         <option value="All">Filter by category</option>
         <option value="Produce">Produce</option>
         <option value="Dairy">Dairy</option>
@@ -14,4 +31,5 @@ function Filter({ onCategoryChange }) {
   );
 }
 
+// Export the Filter component as default
 export default Filter;
